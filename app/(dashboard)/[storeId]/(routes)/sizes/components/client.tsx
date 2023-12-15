@@ -1,5 +1,4 @@
 "use client"
-
 import { Plus } from "lucide-react"
 import { useParams, useRouter } from "next/navigation"
 
@@ -9,13 +8,13 @@ import { Separator } from "@/components/ui/separator"
 import { DataTable } from "@/components/ui/data-table"
 import { ApiList } from "@/components/ui/api-list"
 
-import { CategoryColumn, columns } from "./columns"
+import { SizeColumn, columns } from "./columns"
 
-interface CategoryClientProps {
-    data: CategoryColumn[]
+interface SizesClientProps {
+    data: SizeColumn[]
 }
 
-export const CategoryClient: React.FC<CategoryClientProps> = ({
+export const BillboardClient: React.FC<SizesClientProps> = ({
     data
 }) => {
     const router = useRouter();
@@ -25,19 +24,19 @@ export const CategoryClient: React.FC<CategoryClientProps> = ({
         <>
             <div className="flex items-center justify-between">
                 <Heading 
-                    title={`Categorías (${data.length})`}
-                    description="Controla las Categorías de tu Tienda"
+                    title={`Sizes (${data.length})`}
+                    description="Controla los tamaños de tu Tienda"
                 />
-                <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
+                <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
                     <Plus className="mr-2 h-4 w-4" />
-                    Agregar    
+                    Agregar
                 </Button>
             </div>
             <Separator />
             <DataTable searchKey="name" columns={columns} data={data} />
-            <Heading  title="API" description="API para llamar a las Categorías" />
+            <Heading  title="API" description="API para llamar a los tamaños" />
             <Separator />
-            <ApiList entityName="categories" entityIdName="categoryId" />
+            <ApiList entityName="sizes" entityIdName="sizeId" />
         </>
     )
 }

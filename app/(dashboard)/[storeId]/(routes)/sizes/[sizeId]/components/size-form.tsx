@@ -3,7 +3,7 @@
 import * as z from "zod";
 import axios from "axios";
 import { useState } from "react";
-import { Billboard, Category } from "@prisma/client"
+import { Size } from "@prisma/client"
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -23,29 +23,21 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { 
-    Select, 
-    SelectContent, 
-    SelectItem, 
-    SelectTrigger, 
-    SelectValue 
-} from "@/components/ui/select";
+import ImageUpload from "@/components/ui/image-upload";
 
 const formSchema = z.object({
     name: z.string().min(1),
-    billboardId: z.string().min(1),
+    value: z.string().min(1),
 });
 
-type CategoryFormValues = z.infer<typeof formSchema>;
+type SizeFormValues = z.infer<typeof formSchema>;
 
-interface CategoryFormProps {
-    initialData: Category | null;
-    billboards: Billboard[];
+interface SizeFormProps {
+    initialData: Size | null;
 }
 
-export const CategoryForm: React.FC<CategoryFormProps> = ({
-    initialData,
-    billboards
+export const SizeForm: React.FC<SizeFormProps> = ({
+    initialData
 }) => {
     const params = useParams();
     const router = useRouter();
@@ -53,30 +45,30 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const title = initialData ? "Editar categoría" : "Crear categoría"
-    const description = initialData ? "Editar categoría" : "Crear Nueva categoría"
-    const toastMessage = initialData ? "categoría Editado." : "categoría Creada."
+    const title = initialData ? "Editar tamaño" : "Crear tamaño"
+    const description = initialData ? "Editar Tamaño" : "Crear un Nuevo Tamaño"
+    const toastMessage = initialData ? "Tamaño Editado." : "Tamaño Creado."
     const action = initialData ? "Guardar Cambios" : "Crear"
 
 
-    const form = useForm<CategoryFormValues>({
+    const form = useForm<SizeFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: initialData || {
             name: '',
-            billboardId: ''
+            value: ''
         }
     });
 
-    const onSubmit = async (data: CategoryFormValues) => {
+    const onSubmit = async (data: SizeFormValues) => {
         try {
             setLoading(true);
             if (initialData) {
-                await axios.patch(`/api/${params.storeId}/categories/${params.categoryId}`, data);
+                await axios.patch(`/api/${params.storeId}/sizes/${params.sizeId}`, data);
             } else {
-                await axios.post(`/api/${params.storeId}/categories`, data);
+                await axios.post(`/api/${params.storeId}/sizes`, data);
             }
             router.refresh();
-            router.push(`/${params.storeId}/categories`);
+            router.push(`/${params.storeId}/sizes`);
             toast.success(toastMessage);
         } catch (error) {
             toast.error("Algo salio Mal...");
@@ -88,12 +80,12 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
     const onDelete = async () => {
         try {
             setLoading(true);
-            await axios.delete(`/api/${params.storeId}/categories/${params.categoryId}`);
+            await axios.delete(`/api/${params.storeId}/sizes/${params.sizeId}`);
             router.refresh();
-            router.push(`/${params.storeId}/categories`);
-            toast.success("categoría Eliminado.");
+            router.push(`/${params.storeId}/sizes`);
+            toast.success("Tamaño Eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar todas las categorias publicadas.");
+            toast.error("Primero debe eliminar todos los productos publicados de este tamaño.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -135,46 +127,25 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
                         <FormItem>
                             <FormLabel>Nombre</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Nombre de la Categoría" {...field} />
+                                    <Input disabled={loading} placeholder="Tamaño total" {...field} />
                             </FormControl>
                         <FormMessage />
                         </FormItem>
                         )}
-                    />
-                        <FormField 
+                    />   
+                    <FormField 
                           control={form.control}
-                          name="billboardId"
+                          name="value"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Billboard</FormLabel>
-                            <Select disabled={loading} 
-                                    onValueChange={field.onChange} 
-                                    value={field.value} 
-                                    defaultValue={field.value}
-                                    >
-                                        <FormControl>
-                                            <SelectTrigger>
-                                                <SelectValue 
-                                                    defaultValue={field.value}
-                                                    placeholder="Seleccione la Publicidad"
-                                                />   
-                                            </SelectTrigger> 
-                                        </FormControl>
-                                        <SelectContent>
-                                            {billboards.map((billboard) => (
-                                                <SelectItem
-                                                    key={billboard.id}
-                                                    value={billboard.id}
-                                                >
-                                                    {billboard.label}
-                                                </SelectItem>
-                                            ))}
-                                        </SelectContent>
-                            </Select>
+                            <FormLabel>Precio</FormLabel>
+                                <FormControl>
+                                    <Input disabled={loading} placeholder="Tamaño total" {...field} />
+                            </FormControl>
                         <FormMessage />
                         </FormItem>
                         )}
-                    />
+                    />   
                     </div>
                     <Button disabled={loading} className="ml-auto" type="submit">
                         {action}
