@@ -33,7 +33,7 @@ export const CellAction: React.FC<CellActionProps> = ({
 
     const onCopy = (id: string) => {
         navigator.clipboard.writeText(id);
-        toast.success("Anuncio (ID) Copiado.");
+        toast.success("Tienda (ID) Copiado.");
     };
 
     const onDelete = async () => {
@@ -42,9 +42,9 @@ export const CellAction: React.FC<CellActionProps> = ({
             await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
             router.refresh();
             router.push(`/${params.storeId}/billboards`);
-            toast.success("Anuncio Eliminado.");
+            toast.success("Tienda Eliminada.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos las categorias publicadas.");
+            toast.error("Primero debe eliminar todos las categorias publicadas en esta tienda.");
         } finally {
             setLoading(false);
             setOpen(false);
