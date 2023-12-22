@@ -68,10 +68,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const title = initialData ? "Editar Anuncio" : "Crear Anuncio"
-    const description = initialData ? "Editar Anuncio" : "Crear un Nuevo Anuncio"
-    const toastMessage = initialData ? "Anuncio Editado." : "Anuncio Creado."
-    const action = initialData ? "Guardar Cambios" : "Crear"
+    const title = initialData ? "Editar producto" : "Crear producto";
+    const description = initialData ? "Editar producto" : "Crear un Nuevo producto"
+    const toastMessage = initialData ? "Producto editado" : "Producto creado"
+    const action = initialData ? "Guardar cambios" : "Crear"
 
 
     const form = useForm<ProductFormValues>({
@@ -103,7 +103,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             router.push(`/${params.storeId}/products`);
             toast.success(toastMessage);
         } catch (error) {
-            toast.error("Algo salio Mal...");
+            toast.error("se ha producido un error inesperado.");
         } finally {
             setLoading(false);
         }
@@ -117,7 +117,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
             router.push(`/${params.storeId}/products`);
             toast.success("Producto Eliminado.");
         } catch (error) {
-            toast.error("Algo salio mal.");
+            toast.error("se ha producido un error inesperado.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -212,7 +212,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                             <SelectTrigger>
                                                 <SelectValue 
                                                     defaultValue={field.value}
-                                                    placeholder="Seleccione la categoria"
+                                                    placeholder="Seleccione la categoría"
                                                 />
                                             </SelectTrigger> 
                                         </FormControl>
@@ -246,7 +246,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                             <SelectTrigger>
                                                 <SelectValue 
                                                     defaultValue={field.value}
-                                                    placeholder="Seleccione el tamaño"
+                                                    placeholder="Seleccione su tamaño"
                                                 />
                                             </SelectTrigger> 
                                         </FormControl>
@@ -316,7 +316,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     Mostrar al inicio
                                 </FormLabel>
                                 <FormDescription>
-                                    Este producto sera visible en la inicio de la pagina web
+                                    Este producto sera visible en el inicio de la pagina web
                                 </FormDescription>
                             </div>
                         </FormItem>
@@ -340,7 +340,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                                     Archivar
                                 </FormLabel>
                                 <FormDescription>
-                                    Este producto NO sera visible en la tienda
+                                    Este producto no sera visible en la tienda web
                                 </FormDescription>
                             </div>
                         </FormItem>

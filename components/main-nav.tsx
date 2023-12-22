@@ -21,7 +21,7 @@ export function MainNav({
         },
         {
             href:`/${params.storeId}/billboards`,
-            label: 'Publicidad',
+            label: 'Banner',
             active: pathname === `/${params.storeId}/billboards`,
         },
         {
@@ -51,7 +51,7 @@ export function MainNav({
         },
         {
             href:`/${params.storeId}/settings`,
-            label: 'Configuración',
+            label: 'Config',
             active: pathname === `/${params.storeId}/settings`,
         }
     ];

@@ -42,9 +42,9 @@ export const CellAction: React.FC<CellActionProps> = ({
             await axios.delete(`/api/${params.storeId}/products/${data.id}`);
             router.refresh();
             router.push(`/${params.storeId}/products`);
-            toast.success("Producto Eliminado.");
+            toast.success("Producto eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos las categorias publicadas.");
+            toast.error("Se ha producido un error inesperado.");
         } finally {
             setLoading(false);
             setOpen(false);

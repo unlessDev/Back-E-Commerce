@@ -45,9 +45,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const title = initialData ? "Editar Anuncio" : "Crear Anuncio"
-    const description = initialData ? "Editar Anuncio" : "Crear un Nuevo Anuncio"
-    const toastMessage = initialData ? "Anuncio Editado." : "Anuncio Creado."
+    const title = initialData ? "Editar Banner" : "Crear Banner"
+    const description = initialData ? "Editar Banner" : "Crear un Nuevo Banner"
+    const toastMessage = initialData ? "Banner Editado." : "Banner Creado."
     const action = initialData ? "Guardar Cambios" : "Crear"
 
 
@@ -83,9 +83,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
             router.push(`/${params.storeId}/billboards`);
-            toast.success("Anuncio Eliminado.");
+            toast.success("Banner Eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos las categorias publicadas.");
+            toast.error("Primero debe eliminar todos las categorias creadas!");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -144,9 +144,9 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                           name="label"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Label</FormLabel>
+                            <FormLabel>Tienda</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Billboard Label" {...field} />
+                                    <Input disabled={loading} placeholder="Tienda" {...field} />
                             </FormControl>
                         <FormMessage />
                         </FormItem>

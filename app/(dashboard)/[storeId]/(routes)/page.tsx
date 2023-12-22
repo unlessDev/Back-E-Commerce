@@ -1,7 +1,10 @@
 const DashboardPage = () => {
     return (
         <div>
-            Esta es la sección Dashboard de la App
+            <br />
+            <h3>Esta la sección Dashboard</h3>
+            <br />
+            <p>Esta en pleno proceso de construcción :)</p>
         </div>
     );
 }

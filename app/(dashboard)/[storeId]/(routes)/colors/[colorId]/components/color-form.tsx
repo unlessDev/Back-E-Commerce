@@ -86,7 +86,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
             router.push(`/${params.storeId}/colors`);
             toast.success("Color Eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos los productos publicados de este tamaño.");
+            toast.error("Primero debe eliminar todos los productos publicados con este color.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -126,9 +126,9 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                           name="name"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nombre</FormLabel>
+                            <FormLabel>Nombre del color</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Nombre del color" {...field} />
+                                    <Input disabled={loading} placeholder="Verde" {...field} />
                             </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -139,10 +139,10 @@ export const ColorForm: React.FC<ColorFormProps> = ({
                           name="value"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Valor</FormLabel>
+                            <FormLabel>Valor Hex del color</FormLabel>
                                 <FormControl>
                                     <div className="flex items-center gap-x-4">
-                                        <Input disabled={loading} placeholder="Valor del color" {...field} />
+                                        <Input disabled={loading} placeholder="#008000" {...field} />
                                             <div 
                                                 className="border p-4 rounded-full"
                                                 style={{ backgroundColor: field.value }}

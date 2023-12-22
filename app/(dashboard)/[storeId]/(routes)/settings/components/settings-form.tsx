@@ -72,7 +72,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
             router.push("/");
             toast.success("Tienda Eliminada.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos los productos y categorias publicados de la Tienda.");
+            toast.error("Primero debe eliminar todos los productos y categorías publicados en la Tienda.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -120,7 +120,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({
                         />   
                     </div>
                     <Button disabled={loading} className="ml-auto" type="submit">
-                        Guardar Cambios
+                        Guardar cambios
                     </Button>
                 </form>
             </Form>

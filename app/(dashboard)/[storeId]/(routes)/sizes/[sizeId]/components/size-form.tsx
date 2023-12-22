@@ -46,7 +46,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
     const [loading, setLoading] = useState(false);
 
     const title = initialData ? "Editar tamaño" : "Crear tamaño"
-    const description = initialData ? "Editar Tamaño" : "Crear un Nuevo Tamaño"
+    const description = initialData ? "Editar tamaño" : "Crear un Nuevo tamaño"
     const toastMessage = initialData ? "Tamaño Editado." : "Tamaño Creado."
     const action = initialData ? "Guardar Cambios" : "Crear"
 
@@ -85,7 +85,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
             router.push(`/${params.storeId}/sizes`);
             toast.success("Tamaño Eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos los productos publicados de este tamaño.");
+            toast.error("Primero debe eliminar todos los productos creados con este tamaño.");
         } finally {
             setLoading(false);
             setOpen(false);
@@ -125,9 +125,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
                           name="name"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Nombre</FormLabel>
+                            <FormLabel>Nombre del tamaño</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Tamaño total" {...field} />
+                                    <Input disabled={loading} placeholder="Small" {...field} />
                             </FormControl>
                         <FormMessage />
                         </FormItem>
@@ -138,9 +138,9 @@ export const SizeForm: React.FC<SizeFormProps> = ({
                           name="value"
                           render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Precio</FormLabel>
+                            <FormLabel>Valor del tamaño</FormLabel>
                                 <FormControl>
-                                    <Input disabled={loading} placeholder="Tamaño total" {...field} />
+                                    <Input disabled={loading} placeholder="S" {...field} />
                             </FormControl>
                         <FormMessage />
                         </FormItem>

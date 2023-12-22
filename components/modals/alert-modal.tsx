@@ -30,7 +30,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
 
     return (
         <Modal
-            title="¿Desea Eliminar?"
+            title="¿Realmente Desea Eliminar?"
             description="Esta acción no se puede revertir."
             isOpen={isOpen}
             onClose={onClose}

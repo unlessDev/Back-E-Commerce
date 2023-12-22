@@ -43,7 +43,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             router.refresh();
             toast.success("Categoría Eliminada.");
         } catch (error) {
-            toast.error("Primero debe eliminar todos los productos publicadas.");
+            toast.error("Primero debe eliminar todos los productos publicados.");
         } finally {
             setLoading(false);
             setOpen(false);

@@ -44,7 +44,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             router.push(`/${params.storeId}/sizes`);
             toast.success("Tamaño Eliminado.");
         } catch (error) {
-            toast.error("Primero debe eliminar publicadas.");
+            toast.error("Se ha producido un error inesperado.");
         } finally {
             setLoading(false);
             setOpen(false);
